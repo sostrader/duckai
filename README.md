@@ -2,14 +2,12 @@
 
 ![Crates.io License](https://img.shields.io/crates/l/duckai)
 ![crates.io](https://img.shields.io/crates/v/duckai.svg)
-![Crates.io Total Downloads](https://img.shields.io/crates/d/duckai)
 
 DuckDuckGo AI to OpenAI
 
 - `API`身份验证
 - 支持`IP`代理池
 - 流式/非流式`API`
-- 内存占用极小
 
 ## 模型
 
@@ -89,7 +87,7 @@ cargo install vproxy
 - Dokcer
 
 ```bash
-docker run --rm -it ghcr.io/penumbra-x/duckai:latest run
+docker run --rm -it -p 8080:8080 ghcr.io/penumbra-x/duckai:latest run
 ```
 
 2. 使用
