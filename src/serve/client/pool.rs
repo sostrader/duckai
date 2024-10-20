@@ -103,7 +103,15 @@ impl Pool {
                     clients,
                 }
             }
-            _ => Pool::Default(Client::new()),
+            _ => {
+                let config = HttpConfig::builder()
+                    .timeout(conf.timeout)
+                    .connect_timeout(conf.connect_timeout)
+                    .tcp_keepalive(conf.tcp_keepalive)
+                    .build();
+
+                Pool::Default(build::build_client(config).await)
+            }
         }
     }
 
