@@ -1,5 +1,5 @@
 use super::build::{self, HttpConfig};
-use crate::{config::Config, proxy::Proxy};
+use crate::{config::Config, proxy::Proxies};
 use cidr::IpCidr;
 use rand::Rng;
 use rquest::Client;
@@ -32,9 +32,9 @@ impl Pool {
             (vec![], vec![], vec![]),
             |(mut proxies, mut interfaces, mut cidr), proxy| {
                 match proxy {
-                    Proxy::URL(v) => proxies.push(v),
-                    Proxy::Interface(v) => interfaces.push(v),
-                    Proxy::CIDR(v) => cidr.push(v),
+                    Proxies::Proxy(v) => proxies.push(v),
+                    Proxies::Interface(v) => interfaces.push(v),
+                    Proxies::CIDR(v) => cidr.push(v),
                 }
                 (proxies, interfaces, cidr)
             },

@@ -1,4 +1,4 @@
-use crate::{error::Error, proxy::Proxy};
+use crate::{error::Error, proxy::Proxies};
 use serde::{Deserialize, Serialize};
 use std::{
     net::{IpAddr, Ipv4Addr, SocketAddr},
@@ -27,7 +27,7 @@ pub struct Config {
 
     /// Upstream proxy, support multiple proxy
     /// Type: interface/proxy/cidr
-    pub proxies: Vec<Proxy>,
+    pub proxies: Vec<Proxies>,
 
     /// TLS certificate file path
     pub tls_cert: Option<PathBuf>,

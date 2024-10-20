@@ -6,29 +6,29 @@ use url::Url;
 
 #[derive(Debug, Serialize, Deserialize, Clone, Eq, PartialEq)]
 #[serde(rename_all = "lowercase")]
-pub enum Proxy {
+pub enum Proxies {
     /// Upstream proxy, supports http, https, socks4, socks5, socks5h
-    URL(Url),
+    Proxy(Url),
     /// Bind to interface, supports ipv4, ipv6
     Interface(IpAddr),
     /// Bind to ipv6/ipv4 CIDR, ramdomly generate ipv4/ipv6 address
     CIDR(IpCidr),
 }
 
-impl From<Url> for Proxy {
+impl From<Url> for Proxies {
     fn from(url: Url) -> Self {
-        Proxy::URL(url)
+        Proxies::Proxy(url)
     }
 }
 
-impl From<IpAddr> for Proxy {
+impl From<IpAddr> for Proxies {
     fn from(ip_addr: IpAddr) -> Self {
-        Proxy::Interface(ip_addr)
+        Proxies::Interface(ip_addr)
     }
 }
 
-impl From<IpCidr> for Proxy {
+impl From<IpCidr> for Proxies {
     fn from(cidr: IpCidr) -> Self {
-        Proxy::CIDR(cidr)
+        Proxies::CIDR(cidr)
     }
 }
