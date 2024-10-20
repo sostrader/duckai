@@ -1,6 +1,8 @@
 mod build;
 mod dns;
 mod pool;
+#[cfg(target_os = "linux")]
+mod route;
 
 use crate::config;
 use pool::Pool;
