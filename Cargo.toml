@@ -3,6 +3,7 @@ name = "duckai"
 description = "DuckDuckGo AI to OpenAI"
 version = "0.1.0"
 repository = "https://github.com/penumbra-x/duckai"
+license = "MIT"
 authors = ["0x676e67 <gngppz@gmail.com>"]
 edition = "2021"
 rust-version = "1.81"

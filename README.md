@@ -1,5 +1,9 @@
 # duckai
 
+![Crates.io License](https://img.shields.io/crates/l/duckai)
+![crates.io](https://img.shields.io/crates/v/duckai.svg)
+![Crates.io Total Downloads](https://img.shields.io/crates/d/duckai)
+
 DuckDuckGo AI to OpenAI
 
 - Bearer authentication
@@ -48,7 +52,7 @@ Commands:
   stop     Stop server daemon
   log      Show the server daemon log
   ps       Show the server daemon process
-  gt       Generate config template file (toml format file)
+  gt       Generate config template file (yaml format file)
   help     Print this message or the help of the given subcommand(s)
 
 Options:

@@ -42,7 +42,7 @@ pub enum Commands {
     /// Show the server daemon process
     #[cfg(target_family = "unix")]
     PS,
-    /// Generate config template file (toml format file)
+    /// Generate config template file (yaml format file)
     GT(ConfigPath),
 }
 
