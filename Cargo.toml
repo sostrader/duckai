@@ -1,0 +1,84 @@
+[package]
+name = "duckai"
+description = "DuckDuckGo AI to OpenAI"
+version = "0.1.0"
+repository = "https://github.com/penumbra-x/duckai"
+authors = ["0x676e67 <gngppz@gmail.com>"]
+edition = "2021"
+rust-version = "1.81"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+clap = { version = "4", features = ["derive", "env"] }
+cidr = { version = "0.3.0", features = ["serde"] }
+url = { version = "2", features = ["serde"] }
+self-github-update = { version = "0.39", features = [
+    "archive-tar",
+    "compression-flate2",
+] }
+typed-builder = "0.20.0"
+futures-util = "0.3"
+rand = "0.8"
+tokio = { version = "1", features = ["full"] }
+
+# client
+rquest = { version = "0.23.3", features = ["json", "stream", "cookies"] }
+
+# log
+tracing = { version = "0.1.40" }
+tracing-subscriber = { version = "0.3.0", features = ["env-filter"] }
+
+# yaml
+serde_yaml = "0.9.33"
+
+# moka cache
+moka = { version = "0.12", default-features = false, features = ["future"] }
+
+# hickory-dns
+hickory-resolver = "0.24"
+
+# eventsource stream
+eventsource-stream = "0.2.3"
+async-stream = "0.3.6"
+
+# axum
+axum = { version = "0.6.20", features = ["http2", "headers"] }
+axum-server = { version = "0.5.1", features = ["tls-rustls"] }
+axum-extra = { version =  "0.8.0" }
+tower-http = { version = "0.4.4", default-features = false, features = ["trace", "cors"] }
+tower = { version = "0.4.13", default-features = false, features = ["limit"] }
+
+# for memory allocator
+tcmalloc = { version = "0.3.0", optional = true }
+snmalloc-rs = { version = "0.3.4", optional = true }
+rpmalloc = { version = "0.2.2", optional = true }
+jemallocator = { package = "tikv-jemallocator", version = "0.6", optional = true }
+mimalloc = { version = "0.1.39", default-features = false, optional = true }
+
+# linux utils
+[target.'cfg(target_os = "linux")'.dependencies]
+sysctl = "0.5.4"
+rtnetlink = "0.14"
+netlink-packet-route = "0.19"
+
+[target.'cfg(target_family = "unix")'.dependencies]
+daemonize = "0.5.0"
+nix = { version = "0.29.0", features = ["user", "signal", "resource"] }
+sysinfo = { version = "0.30", default-features = false }
+
+[features]
+default = ["jemalloc"]
+jemalloc = ["dep:jemallocator"]
+tcmalloc = ["tcmalloc/bundled"]
+snmalloc = ["dep:snmalloc-rs"]
+rpmalloc = ["dep:rpmalloc"]
+mimalloc = ["dep:mimalloc"]
+
+[profile.release]
+lto = true
+opt-level = 'z'
+codegen-units = 1
+strip = true
+panic = "abort"
