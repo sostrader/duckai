@@ -1,54 +1,13 @@
-use std::{
-    net::{IpAddr, Ipv4Addr, Ipv6Addr},
-    time::Instant,
-};
+use std::time::Instant;
 
 use futures_util::future::join_all;
 use hickory_resolver::{
-    config::{LookupIpStrategy, NameServerConfigGroup, ResolverConfig, ResolverOpts},
+    config::{LookupIpStrategy, ResolverConfig, ResolverOpts},
     TokioAsyncResolver,
 };
 use tokio::sync::OnceCell;
 
-#[allow(clippy::declare_interior_mutable_const)]
 pub const FASTEST_DNS_CONFIG: OnceCell<ResolverConfig> = OnceCell::const_new();
-
-/// IP addresses for Tencent Public DNS
-pub const TENCENT_IPS: &[IpAddr] = &[
-    IpAddr::V4(Ipv4Addr::new(119, 29, 29, 29)),
-    IpAddr::V4(Ipv4Addr::new(119, 29, 29, 30)),
-    IpAddr::V6(Ipv6Addr::new(0x2402, 0x4e00, 0, 0, 0, 0, 0, 0x1)),
-];
-
-/// IP addresses for Aliyun Public DNS
-pub const ALIYUN_IPS: &[IpAddr] = &[
-    IpAddr::V4(Ipv4Addr::new(223, 5, 5, 5)),
-    IpAddr::V4(Ipv4Addr::new(223, 6, 6, 6)),
-    IpAddr::V6(Ipv6Addr::new(0x2400, 0x3200, 0, 0, 0, 0, 0, 0x1)),
-];
-
-pub trait ResolverConfigExt {
-    fn tencent() -> ResolverConfig;
-    fn aliyun() -> ResolverConfig;
-}
-
-impl ResolverConfigExt for ResolverConfig {
-    fn tencent() -> ResolverConfig {
-        ResolverConfig::from_parts(
-            None,
-            vec![],
-            NameServerConfigGroup::from_ips_clear(TENCENT_IPS, 53, true),
-        )
-    }
-
-    fn aliyun() -> ResolverConfig {
-        ResolverConfig::from_parts(
-            None,
-            vec![],
-            NameServerConfigGroup::from_ips_clear(ALIYUN_IPS, 53, true),
-        )
-    }
-}
 
 /// Fastest DNS resolver
 pub async fn load_fastest_dns() -> crate::Result<ResolverConfig> {
@@ -61,8 +20,6 @@ pub async fn load_fastest_dns() -> crate::Result<ResolverConfig> {
         ResolverConfig::google(),
         ResolverConfig::quad9(),
         ResolverConfig::cloudflare(),
-        ResolverConfig::tencent(),
-        ResolverConfig::aliyun(),
     ];
 
     for config in configs {
