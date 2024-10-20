@@ -76,22 +76,19 @@ where
     D: Deserializer<'de>,
 {
     let mut message: Vec<Message> = Vec::deserialize(deserializer)?;
-    let mut compression_message = String::with_capacity(256);
-    let mut formatted_messages = Vec::new();
+    let mut compression_message = Vec::with_capacity(message.len());
     for message in &mut message {
         if let (Some(role), Some(msg)) = (message.role.as_mut(), &message.content) {
             if matches!(role, Role::System) {
                 *role = Role::User;
             }
-            formatted_messages.push(format!("{}:{};", role.as_str(), msg));
+            compression_message.push(format!("{}:{};", role.as_str(), msg));
         }
     }
 
-    compression_message.push_str(&formatted_messages.join("\n"));
-
     Ok(vec![Message::builder()
         .role(Role::User)
-        .content(compression_message)
+        .content(compression_message.join("\n"))
         .build()])
 }
 
