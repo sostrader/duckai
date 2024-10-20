@@ -6,8 +6,9 @@
 
 DuckDuckGo AI to OpenAI
 
-- API身份验证
+- `API`身份验证
 - 支持`IP`代理池
+- 流式/非流式`API`
 - 内存占用极小
 
 ## 模型
