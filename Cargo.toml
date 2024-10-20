@@ -14,10 +14,6 @@ thiserror = "1"
 clap = { version = "4", features = ["derive", "env"] }
 cidr = { version = "0.3.0", features = ["serde"] }
 url = { version = "2", features = ["serde"] }
-self-github-update = { version = "0.39", features = [
-    "archive-tar",
-    "compression-flate2",
-] }
 typed-builder = "0.20.0"
 futures-util = "0.3"
 rand = "0.8"

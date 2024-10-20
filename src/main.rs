@@ -4,7 +4,6 @@ mod daemon;
 mod error;
 mod proxy;
 mod serve;
-mod update;
 
 use clap::{Args, Parser, Subcommand};
 pub use error::Error;
@@ -45,8 +44,6 @@ pub enum Commands {
     PS,
     /// Generate config template file (toml format file)
     GT(ConfigPath),
-    /// Self update
-    Update,
 }
 
 #[derive(Args)]
@@ -71,6 +68,5 @@ fn main() -> Result<()> {
         #[cfg(target_family = "unix")]
         Commands::Log => daemon::log(),
         Commands::GT(path) => config::generate_template(path.config_path),
-        Commands::Update => update::update(),
     }
 }

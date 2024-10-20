@@ -12,9 +12,6 @@ pub enum Error {
     #[error(transparent)]
     AddressParseError(#[from] std::net::AddrParseError),
 
-    #[error(transparent)]
-    SelfUpdateError(#[from] self_github_update::errors::Error),
-
     #[cfg(target_family = "unix")]
     #[error(transparent)]
     NixError(#[from] nix::Error),
