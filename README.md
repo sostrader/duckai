@@ -82,7 +82,7 @@ Options:
 - cargo
 
 ```bash
-cargo install vproxy
+cargo install duckai
 ```
 
 - Dokcer
