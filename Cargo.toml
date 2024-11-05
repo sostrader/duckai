@@ -42,7 +42,7 @@ async-stream = "0.3.6"
 
 # axum
 axum = { version = "0.6.20", features = ["http2", "headers"] }
-axum-server = { version = "0.5.1", features = ["tls-rustls"] }
+axum-server = { package = "axum-server2", version = "0.5.0", features = ["tls-boringssl"] }
 axum-extra = { version =  "0.8.0" }
 tower-http = { version = "0.4.4", default-features = false, features = ["trace", "cors"] }
 tower = { version = "0.4.13", default-features = false, features = ["limit"] }
