@@ -6,12 +6,12 @@
 
 > 🚀 Support my journey to full-time open-source development by [sponsoring me on GitHub](https://github.com/penumbra-x/.github/blob/main/profile/SPONSOR.md)
 
-DuckDuckGo AI to OpenAI
+DuckDuckGo AI to OpenAI API
 
-- `API` authentication
+- API authentication
 - Support IP proxy pool
 - Built-in Http connection pool
-- Streaming/non-streaming `API`
+- Streaming/non-streaming API
 
 ## Model
 
