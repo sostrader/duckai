@@ -15,7 +15,7 @@ use axum::{
     Router,
 };
 use axum::{Json, TypedHeader};
-use axum_server::{tls_rustls::RustlsConfig, AddrIncomingConfig, Handle, HttpConfig};
+use axum_server::{tls_boringssl::BoringSSLConfig, AddrIncomingConfig, Handle, HttpConfig};
 use client::ClientLoadBalancer;
 use serde::Serialize;
 use std::ops::Deref;
@@ -129,10 +129,10 @@ pub async fn run(path: PathBuf) -> Result<()> {
     match (config.tls_cert.as_ref(), config.tls_key.as_ref()) {
         (Some(cert), Some(key)) => {
             // Load TLS configuration
-            let tls_config = RustlsConfig::from_pem_file(cert, key).await?;
+            let tls_config = BoringSSLConfig::from_pem_file(cert, key)?;
 
             // Use TLS configuration to create a secure server
-            axum_server::bind_rustls(config.bind, tls_config)
+            axum_server::bind_boringssl(config.bind, tls_config)
                 .handle(handle)
                 .addr_incoming_config(incoming_config)
                 .http_config(http_config)

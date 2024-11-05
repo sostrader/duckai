@@ -127,6 +127,7 @@ fn random_impersonate() -> Impersonate {
         Impersonate::Chrome127,
         Impersonate::Chrome128,
         Impersonate::Chrome129,
+        Impersonate::Chrome130,
         Impersonate::SafariIos17_2,
         Impersonate::SafariIos17_4_1,
         Impersonate::SafariIos16_5,
