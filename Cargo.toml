@@ -21,7 +21,7 @@ rand = "0.8"
 tokio = { version = "1", features = ["full"] }
 
 # client
-rquest = { version = "0.26.0", features = ["json", "stream", "cookies", "socks"] }
+rquest = { version = "0.27.0", features = ["json", "stream", "cookies", "socks", "hickory-dns"] }
 
 # log
 tracing = { version = "0.1.40" }
