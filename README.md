@@ -4,22 +4,25 @@
 ![crates.io](https://img.shields.io/crates/v/duckai.svg)
 ![Crates.io Total Downloads](https://img.shields.io/crates/d/duckai)
 
+> 🚀 Support my journey to full-time open-source development by [sponsoring me on GitHub](https://github.com/penumbra-x/.github/blob/main/profile/SPONSOR.md)
+
 DuckDuckGo AI to OpenAI
 
-- `API`身份验证
-- 支持`IP`代理池
-- 流式/非流式`API`
+- `API` authentication
+- Support IP proxy pool
+- Built-in Http connection pool
+- Streaming/non-streaming `API`
 
-## 模型
+## Model
 
-模型映射，不支持的模型默认为`gpt-4o-mini`
+Model mapping, unsupported models default to `gpt-4o-mini`
 
 - gpt-4o-mini -> `(gpt-4o-mini)`
 - claude-3-haiku -> `(claude-3-haiku-20240307)`
 - llama-3.1-70b -> `(meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo)`
 - mixtral-8x7b -> `(mistralai/Mixtral-8x7B-Instruct-v0.1)`
 
-## 对话
+## Chat
 
 ```bash
 curl --request POST 'http://127.0.0.1:8080/v1/chat/completions' \
@@ -36,7 +39,7 @@ curl --request POST 'http://127.0.0.1:8080/v1/chat/completions' \
   }'
 ```
 
-## 命令
+## Command
 
 ```bash
 $ duckai -h
@@ -71,13 +74,13 @@ Options:
   -h, --help  Print help
 ```
 
-## 安装
+## Install
 
 <details>
 
-<summary>如果您需要更详细的安装和使用信息，请查看此处</summary>
+<summary>If you need more detailed installation and usage information, please check here</summary>
 
-1. 安装
+1. Install
 
 - cargo
 
@@ -91,68 +94,60 @@ cargo install duckai
 docker run --rm -it -p 8080:8080 ghcr.io/penumbra-x/duckai:latest run
 ```
 
-2. 使用
-
-- 生成配置模版
+2. Generate config template file
 
 ```bash
-duckai gt # 生成duckai.yaml文件（当前目录）
+duckai gt # Generate duckai.yaml file (current directory)
 ```
 
 ```yaml
-# 调试模式
+# Debug mode
 debug: false
 
-# 监听地址
+# Listen address
 bind: 0.0.0.0:8080
 
-# 客户端超时
+# Client timeout
 timeout: 60
 
-# 客户端连接超时
+# Client connect timeout
 connect_timeout: 10
 
-# 客户端 tcp keepalive
+# Client tcp keepalive
 tcp_keepalive: 90
 
-# 最大 tcp 连接
+# Maximum tcp connection
 concurrent: 100
 
-# 代理池
+# Proxy pool
 proxies:
 - !url http://127.0.0.1:6152
 - !url socks5://127.0.0.1:6153
 - !cidr 2001:470:e953::/48
 - !iface 192.168.1.10
 
-# 启用 TLS
+# Enable TLS
 tls_cert: null
 tls_key: null
 
-# 验证 api 密钥
+# API key
 api_key: null
 ```
 
-3. 代理池
+3. Proxy pool
 
-`IP`代理池类型支持三种类型（优先级：`CIDR` > `Proxy` > `Interface`，使用轮训策略）:
+`IP` proxy pool type supports three types (priority: `CIDR` > `Proxy` > `Interface`, using round-robin strategy):
 
-- `URL`，协议支持：`http`/`https`/`socks4`/`socks5`/`socks5h`
-- `Interface`，即绑定本地网络接口地址
-- `CIDR`，支持`IPv4`/`IPv6`子网，前提是子网路由正常通信
+- `URL`，protocol supports: `http`/`https`/`socks4`/`socks5`/`socks5h`
+- `Interface`，bind local network interface address
+- `CIDR`，support `IPv4`/`IPv6` subnet, the premise is that the subnet routes are normally communicable
 
 </details>
 
-## 贡献
+## Contribution
 
-如果您想提交贡献，请打开 [Pull Request](https://github.com/penumbra-x/duckai/pulls)
+If you want to submit contributions, please open [Pull Request](https://github.com/penumbra-x/duckai/pulls)
 
-## 获取帮助
+## Get help
 
-您的问题可能已在 [issues](https://github.com/penumbra-x/duckai/issues) 中得到解答
-
-## 赞助商
-
-如果您觉得这个项目有帮助，请考虑赞助我以支持持续开发：
-
-**USDT-TRC20**: TCwD8HfHnJ7236Hdj3HF5uZKR2keeWeqZe
+Your questions may have been answered in [issues](https://github.com/penumbra-x/duckai/issues)
