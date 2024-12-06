@@ -36,8 +36,7 @@ impl HttpConfig {
 pub async fn build_client(config: HttpConfig) -> Client {
     init_builder(config)
         .await
-        .async_build()
-        .await
+        .build()
         .expect("Failed to build Api client")
 }
 
