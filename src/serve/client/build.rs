@@ -36,7 +36,8 @@ impl HttpConfig {
 pub async fn build_client(config: HttpConfig) -> Client {
     init_builder(config)
         .await
-        .build()
+        .async_build()
+        .await
         .expect("Failed to build Api client")
 }
 
@@ -128,6 +129,7 @@ fn random_impersonate() -> Impersonate {
         Impersonate::Chrome128,
         Impersonate::Chrome129,
         Impersonate::Chrome130,
+        Impersonate::Chrome131,
         Impersonate::SafariIos17_2,
         Impersonate::SafariIos17_4_1,
         Impersonate::SafariIos16_5,
