@@ -142,6 +142,8 @@ fn random_impersonate() -> Impersonate {
         Impersonate::Safari17_4_1,
         Impersonate::Safari17_5,
         Impersonate::Safari18,
+        Impersonate::SafariIos18_1_1,
+        Impersonate::Safari18_2,
         Impersonate::SafariIPad18,
         Impersonate::OkHttp3_9,
         Impersonate::OkHttp3_11,
@@ -153,6 +155,7 @@ fn random_impersonate() -> Impersonate {
         Impersonate::Edge101,
         Impersonate::Edge122,
         Impersonate::Edge127,
+        Impersonate::Edge131
     ];
 
     *VERSIONS
