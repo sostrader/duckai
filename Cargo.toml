@@ -47,6 +47,9 @@ axum-extra = { version =  "0.8.0" }
 tower-http = { version = "0.4.4", default-features = false, features = ["trace", "cors"] }
 tower = { version = "0.4.13", default-features = false, features = ["limit"] }
 
+# jemalloc
+jemallocator = { package = "tikv-jemallocator", version = "0.6" }
+
 # linux utils
 [target.'cfg(target_os = "linux")'.dependencies]
 sysctl = "0.6.0"
@@ -57,10 +60,9 @@ netlink-packet-route = "0.19"
 daemonize = "0.5.0"
 nix = { version = "0.29.0", features = ["user", "signal"] }
 sysinfo = { version = "0.30", default-features = false }
-jemallocator = { package = "tikv-jemallocator", version = "0.6" }
 
 [features]
-default = []
+default = ["jemallocator/unprefixed_malloc_on_supported_platforms"]
 
 [profile.release]
 lto = true
