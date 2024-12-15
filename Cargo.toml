@@ -62,7 +62,8 @@ nix = { version = "0.29.0", features = ["user", "signal"] }
 sysinfo = { version = "0.30", default-features = false }
 
 [features]
-default = ["jemallocator/unprefixed_malloc_on_supported_platforms"]
+default = ["jemalloc"]
+jemalloc = ["jemallocator/unprefixed_malloc_on_supported_platforms"]
 
 [profile.release]
 lto = true

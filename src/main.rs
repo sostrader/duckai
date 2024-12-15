@@ -9,7 +9,7 @@ use clap::{Args, Parser, Subcommand};
 pub use error::Error;
 use std::path::PathBuf;
 
-#[cfg(target_family = "unix")]
+#[cfg(all(not(target_env = "msvc"), feature = "jemalloc"))]
 #[global_allocator]
 static ALLOC: jemallocator::Jemalloc = jemallocator::Jemalloc;
 
