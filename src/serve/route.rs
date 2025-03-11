@@ -42,11 +42,11 @@ pub async fn models(
                 .owned_by("claude")
                 .build(),
             ModelData::builder()
-                .id("llama-3.1-70b")
+                .id("llama-3.3-70b")
                 .owned_by("meta-llama")
                 .build(),
             ModelData::builder()
-                .id("mixtral-8x7b")
+                .id("mistral-small-3")
                 .owned_by("mistral ai")
                 .build(),
             ModelData::builder()
