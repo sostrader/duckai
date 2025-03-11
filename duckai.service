@@ -1,0 +1,13 @@
+[Unit]
+Description=DuckDuckGo AI Server
+After=network.target
+
+[Service]
+Type=simple
+User=user
+ExecStart=/usr/local/bin/duckai run
+Restart=on-failure
+Environment=RUST_LOG=info
+
+[Install]
+WantedBy=multi-user.target
