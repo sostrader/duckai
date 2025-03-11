@@ -18,6 +18,7 @@ use axum_extra::headers::Authorization;
 use axum_extra::TypedHeader;
 use axum_server::{tls_boringssl::BoringSSLConfig, Handle};
 use client::ClientLoadBalancer;
+use hyper_util::rt::TokioTimer;
 use serde::Serialize;
 use std::ops::Deref;
 use std::sync::Arc;
@@ -127,6 +128,7 @@ pub async fn run(path: PathBuf) -> Result<()> {
                 .preserve_header_case(true)
                 .preserve_header_case(true)
                 .http2()
+                .timer(TokioTimer::new())
                 .keep_alive_interval(tcp_keepalive);
 
             server
@@ -143,6 +145,7 @@ pub async fn run(path: PathBuf) -> Result<()> {
                 .preserve_header_case(true)
                 .preserve_header_case(true)
                 .http2()
+                .timer(TokioTimer::new())
                 .keep_alive_interval(tcp_keepalive);
 
             server
