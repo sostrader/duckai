@@ -76,8 +76,9 @@ where
     let model = String::deserialize(deserializer)?;
     let model = match model.as_str() {
         "claude-3-haiku" => "claude-3-haiku-20240307",
-        "llama-3.1-70b" => "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
-        "mixtral-8x7b" => "mistralai/Mixtral-8x7B-Instruct-v0.1",
+        "llama-3.3-70b" => "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+        "mistral-small-3" => "mistralai/Mistral-Small-24B-Instruct-2501",
+        "o3-mini" => "o3-mini",
         _ => "gpt-4o-mini",
     };
 
@@ -183,7 +184,7 @@ pub struct Pong {
 #[derive(Serialize, TypedBuilder)]
 pub struct Models {
     object: &'static str,
-    data: &'static [ModelData; 4],
+    data: &'static [ModelData; 5],
 }
 
 #[derive(Serialize, Deserialize, TypedBuilder)]

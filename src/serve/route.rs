@@ -31,7 +31,7 @@ pub async fn models(
 ) -> Result<Json<Models>> {
     state.valid_key(bearer)?;
 
-    static MODEL_DATA: LazyLock<[ModelData; 4]> = LazyLock::new(|| {
+    static MODEL_DATA: LazyLock<[ModelData; 5]> = LazyLock::new(|| {
         [
             ModelData::builder()
                 .id("gpt-4o-mini")
@@ -42,12 +42,16 @@ pub async fn models(
                 .owned_by("claude")
                 .build(),
             ModelData::builder()
-                .id("llama-3.1-70b")
+                .id("llama-3.3-70b")
                 .owned_by("meta-llama")
                 .build(),
             ModelData::builder()
-                .id("mixtral-8x7b")
+                .id("mistral-small-3")
                 .owned_by("mistral ai")
+                .build(),
+            ModelData::builder()
+                .id("o3-mini")
+                .owned_by("openai")
                 .build(),
         ]
     });
